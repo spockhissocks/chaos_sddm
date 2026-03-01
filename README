@@ -1,0 +1,83 @@
+CHAOS UNDIVIDED — SDDM Theme
+==============================
+
+  "In the grim darkness of the far future, there is only war."
+  "And also a login screen."
+
+DESCRIPTION
+-----------
+A Warhammer 40K Chaos-themed SDDM greeter. On every boot, one of the four
+Chaos Gods (or Chaos Undivided) is randomly chosen and the entire theme
+shifts to match — colors, titles, quotes, glows, and ember particles all
+reflect whichever dark patron has blessed your session.
+
+  Khorne      — Blood red. Skulls. War.
+  Tzeentch    — Arcane blue. Schemes within schemes.
+  Nurgle      — Plague green. Grandfather's embrace.
+  Slaanesh    — Hedonist purple. Perfection through excess.
+  Undivided   — Tarnished gold. All gods. All chaos.
+
+FEATURES
+--------
+  - Random Chaos God selection on each load
+  - 30 rising ember/ash particle effects
+  - Warp ambient glow bloom (top + bottom)
+  - Scanline overlay for corrupted terminal aesthetic
+  - Hostname glitch effect on failed login
+  - Blood-red screen flash on failed login
+  - Scrolling 40K lore ticker at the bottom
+  - Breathing panel border glow
+  - Slowly rotating chaos sigil
+  - Per-god flavor quotes and taglines
+
+REQUIREMENTS
+------------
+  - SDDM
+  - Qt 5.x / QtQuick 2.0+
+  - Cinzel font (for gothic lettering)
+
+    Install Cinzel on Arch Linux:
+      wget "https://fonts.google.com/download?family=Cinzel" -O /tmp/cinzel.zip
+      sudo mkdir -p /usr/local/share/fonts/cinzel
+      sudo unzip /tmp/cinzel.zip -d /usr/local/share/fonts/cinzel
+      sudo fc-cache -fv
+
+INSTALLATION
+------------
+  sudo cp -r chaos-undivided/ /usr/share/sddm/themes/
+  # then set Theme=chaos-undivided in /etc/sddm.conf
+
+  Or via sddm settings in your DE.
+
+TESTING
+-------
+  sddm-greeter --test-mode --theme /usr/share/sddm/themes/chaos-undivided
+
+FILES
+-----
+  Main.qml          — Main theme logic and layout
+  theme.conf        — Theme configuration (background path etc.)
+  metadata.desktop  — Theme metadata for SDDM
+  background.jpg    — Background wallpaper (chaos star on void black)
+  rectangle.png     — Retained from base theme (unused, kept for compat)
+  angle-down.png    — Dropdown arrow icon for session/layout selectors
+  LICENSE           — MIT License
+
+CREDITS
+-------
+  Original theme base:
+    Abdurrahman AVCI <abdurrahmanavci@gmail.com>
+    https://github.com/sddm/sddm
+    Licensed under MIT
+
+  Chevron icon:
+    Font Awesome by Dave Gandy — http://fortawesome.github.com/Font-Awesome
+
+  Cinzel typeface:
+    Natanael Gama — https://fonts.google.com/specimen/Cinzel
+    Licensed under SIL Open Font License 1.1
+
+  Warhammer 40,000 is a trademark of Games Workshop Ltd.
+  This theme is a fan work and is not affiliated with or endorsed by
+  Games Workshop in any way. No challenge to their IP is intended.
+  For the Dark Gods. Always.

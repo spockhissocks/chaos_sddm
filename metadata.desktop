@@ -1,0 +1,14 @@
+[SddmGreeterTheme]
+Name=Chaos Undivided
+Description=A Warhammer 40K Chaos-themed SDDM login screen. Randomly selects a Chaos God on each boot. All is dust. All is blood. All is change.
+Author=Servant of the Dark Gods
+Copyright=(c) 2025, Chaos Undivided — based on original work by Abdurrahman AVCI (c) 2013
+License=MIT
+Type=sddm-theme
+Version=2.0
+Screenshot=background.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=chaos-undivided
+Theme-API=2.0
