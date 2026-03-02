@@ -64,11 +64,11 @@ Rectangle {
 
     Connections {
         target: sddm
-        onLoginSucceeded: {
+        function onLoginSucceeded() {
             errorMessage.color = godAccent
             errorMessage.text = "THE WARP ACCEPTS YOU, MORTAL  ∴"
         }
-        onLoginFailed: {
+        function onLoginFailed() {
             password.text = ""
             errorMessage.color = "#cc2200"
             errorMessage.text = "✗  THE GODS REJECT YOUR OFFERING  ✗"
@@ -76,7 +76,7 @@ Rectangle {
             flashAnim.restart()
             glitchTimer.restart()
         }
-        onInformationMessage: {
+        function onInformationMessage(message) {
             errorMessage.color = godAccent
             errorMessage.text = message
         }
@@ -154,44 +154,41 @@ Rectangle {
     // ── Ember particles — rising ash motes ──────────────────────────────────────
     Repeater {
         model: 30
-        Item {
+        Rectangle {
+            id: mote
             property real startX:        Math.random() * container.width
             property real floatDuration: 5000 + Math.random() * 9000
             property real startDelay:    Math.floor(Math.random() * 9000)
             property real drift:         (Math.random() - 0.5) * 140
-            property real sz:            1.0 + Math.random() * 2.5
 
-            Rectangle {
-                id: mote
-                x: parent.startX
-                y: container.height + 10
-                width: parent.sz
-                height: parent.sz
-                radius: parent.sz
-                color: godAccent
-                opacity: 0
+            x: startX
+            y: container.height + 10
+            width:  1.0 + Math.random() * 2.5
+            height: width
+            radius: width
+            color: godAccent
+            opacity: 0
 
-                SequentialAnimation {
-                    loops: Animation.Infinite
-                    PauseAnimation { duration: parent.parent.startDelay }
-                    ParallelAnimation {
-                        NumberAnimation {
-                            target: mote; property: "y"
-                            from: container.height + 10; to: -20
-                            duration: parent.parent.floatDuration
-                            easing.type: Easing.OutCubic
-                        }
-                        NumberAnimation {
-                            target: mote; property: "x"
-                            from: parent.parent.startX
-                            to:   parent.parent.startX + parent.parent.drift
-                            duration: parent.parent.floatDuration
-                        }
-                        SequentialAnimation {
-                            NumberAnimation { target: mote; property: "opacity"; to: 0.9; duration: parent.parent.floatDuration * 0.12 }
-                            NumberAnimation { target: mote; property: "opacity"; to: 0.4; duration: parent.parent.floatDuration * 0.6  }
-                            NumberAnimation { target: mote; property: "opacity"; to: 0.0; duration: parent.parent.floatDuration * 0.28 }
-                        }
+            SequentialAnimation {
+                loops: Animation.Infinite
+                PauseAnimation { duration: mote.startDelay }
+                ParallelAnimation {
+                    NumberAnimation {
+                        target: mote; property: "y"
+                        from: container.height + 10; to: -20
+                        duration: mote.floatDuration
+                        easing.type: Easing.OutCubic
+                    }
+                    NumberAnimation {
+                        target: mote; property: "x"
+                        from: mote.startX
+                        to:   mote.startX + mote.drift
+                        duration: mote.floatDuration
+                    }
+                    SequentialAnimation {
+                        NumberAnimation { target: mote; property: "opacity"; to: 0.9; duration: mote.floatDuration * 0.12 }
+                        NumberAnimation { target: mote; property: "opacity"; to: 0.4; duration: mote.floatDuration * 0.6  }
+                        NumberAnimation { target: mote; property: "opacity"; to: 0.0; duration: mote.floatDuration * 0.28 }
                     }
                 }
             }
